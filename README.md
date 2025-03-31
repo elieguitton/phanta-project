@@ -1,12 +1,34 @@
-# React + Vite
+# Projet Phantasialand
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Objectifs:
+- Récupérer et jouer avec une API de Phantasialand
+- Permettre à des utilisateurs de créer leur compte et de voter pour leur top
+- Gérer une base de données avec toutes les informations
 
-Currently, two official plugins are available:
+LANCER LE PROJET :
+1- concurrently "npm run dev" "lcp --proxyUrl https://queue-times.com"
+2- SI mongod n'est pas lancé : sudo systemctl start mongod OU sudo mongod --dbpath /var/lib/mongo --bind_ip 127.0.0.1
+3- node server.js
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
+-----------------------------------------------------------------------
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+USER:
+- Un user peut créer, modifier et supprimer son compte.
+- Un user peut se connecter et se déconnecter.
+- Un user peut regarder en direct les temps d'attente sur le parc
+- Un user peut regarder une carte interactive du parc.
+- Un user peut demander en ami un autre user.
+- Un user peut supprimer un autre user en tant qu'amis.
+- Un user peut voter pour son attraction préférée : un vote ça vs ça avec l'attraction votée qui reste à chaque tour etc
+- Un user peut voir son classement ainsi que celui de ses amis.
+
+ADMIN:
+- Un admin peut accéder à une interface spéciale avec ses identifiants.
+- Un admin peut créer, modifier et supprimer n'importe quel compte.
+
+-----------------------------------------------------------------------
+
+ETAPE 1 : Voir si il est possible de récupérer une API concernant Phantasialand (OK -> WaitTime.jsx)
+ETAPE 2 : Mettre en forme la page, avec une barre de navigation et un bouton de connexion pour les utilisateurs 
+ETAPES 3 : Mettre en place toute la gestion utilisateurs / admin 

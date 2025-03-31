@@ -6,9 +6,9 @@ Objectifs:
 - Gérer une base de données avec toutes les informations
 
 LANCER LE PROJET :
-1- concurrently "npm run dev" "lcp --proxyUrl https://queue-times.com"
-2- SI mongod n'est pas lancé : sudo systemctl start mongod OU sudo mongod --dbpath /var/lib/mongo --bind_ip 127.0.0.1
-3- node server.js
+    1- concurrently "npm run dev" "lcp --proxyUrl https://queue-times.com"
+    2- SI mongod n'est pas lancé : sudo systemctl start mongod OU sudo mongod --dbpath /var/lib/mongo --bind_ip 127.0.0.1
+    3- node server.js
 
 
 -----------------------------------------------------------------------

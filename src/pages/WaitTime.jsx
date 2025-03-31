@@ -4,7 +4,7 @@ const WaitTime = () => {
   const { data, loading, error } = useAPI("http://localhost:8010/proxy/parks/56/queue_times.json");
 
 
-  if (loading) return <p>Chargement des temps d'attente...</p>;
+  if (loading) return <p>Mise à jour...</p>;
   if (error) return <p>Erreur : {error}</p>;
 
   return (

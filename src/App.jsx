@@ -1,13 +1,28 @@
 import { useState } from 'react'
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import './index.css';
-import WaitTime from './components/WaitTime';
+
+import Navbar from './components/Navbar';
+
+import Home from './pages/Home';
+import WaitTime from './pages/WaitTime';
+import Login from './pages/Login';
+import Inscription from './pages/Inscription';
+import Profil from './pages/Profil'
+
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50 p-4">
-      <h1 className="text-3xl font-bold text-center mb-6">Phanta-Project</h1>
-      <WaitTime/>
-    </div>
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/attente" element={<WaitTime />} />
+        <Route path="/login" element={<Login />} />
+        <Route path='/inscription' element={<Inscription />} />
+        <Route path='/profil' element={<Profil/>} />
+      </Routes>
+    </Router>
   );
 }
 

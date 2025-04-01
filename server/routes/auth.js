@@ -9,6 +9,7 @@ import dotenv from "dotenv";
 dotenv.config();
 const router = express.Router();
 
+
 // Inscription
 router.post("/inscription", async (req, res) => {
   try {
@@ -19,8 +20,6 @@ router.post("/inscription", async (req, res) => {
     const existingPseudo= await User.findOne({pseudo});
     if (existingMail) return res.status(400).json({ message: "Email déjà utilisé !" });
     if (existingPseudo) return res.status(400).json({ message: "Pseudo déjà utilisé !" });
-
-
 
     // Hasher le mot de passe
     const hashedpwd = await bcrypt.hash(pwd, 10);
@@ -69,6 +68,46 @@ router.post("/login", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+
+// Modification
+router.put("/profil", authMiddleware, async (req, res) => {
+  try {
+    const { pseudo, email, prenom, nom } = req.body;
+
+    // Vérifie si un autre utilisateur a déjà cet email ou pseudo
+    const existingUser = await User.findOne({
+      $or: [{ email }, { pseudo }],
+      _id: { $ne: req.user.id }, // Exclut l'utilisateur actuel
+    });
+
+    if (existingUser) {
+      return res.status(400).json({ message: "Email ou pseudo déjà utilisé." });
+    }
+
+    // Met à jour l'utilisateur
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user.id,
+      { pseudo, email, prenom, nom },
+      { new: true }
+    );
+
+    res.json(updatedUser);
+  } catch (err) {
+    res.status(500).json({ message: "Erreur lors de la mise à jour." });
+  }
+});
+
+// Suppression
+router.delete("/profil", authMiddleware, async (req, res) => {
+  try {
+    await User.findByIdAndDelete(req.user.id);
+    res.json({ message: "Compte supprimé avec succès." });
+  } catch (err) {
+    res.status(500).json({ message: "Erreur lors de la suppression du compte." });
+  }
+});
+
 
 // Route pour récupérer les infos de l'utilisateur connecté
 router.get("/profil", authMiddleware, async (req, res) => {
